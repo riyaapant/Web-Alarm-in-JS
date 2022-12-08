@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Web Alarm</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="time current_time">
+
+        </div>
+        <div class="text">
+            Alarm rings in:
+        </div>
+        <div class="time alarm_time">
+
+        </div>
+        <div class="text alarm">
+            Not yet!
+        </div>
+        <div class="control">
+            <div class="controlbtn">
+                <button onclick="stop()">Stop</button>
+            </div>
+            <div class="controlbtn">
+                <button onclick="snooze()">Snooze</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        //document.querySelector('.alarm').textContent = a_hour;
+        var a_hour= parseInt(window.prompt("Enter the hour"));
+        var a_minute = parseInt(window.prompt("Enter the minute"));
+        var a_second = parseInt(window.prompt("Enter the second"));
+        var alarm = new Audio("alarm.wav");
+        function current_date() {
+            const d = new Date();
+            Number(d);
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            let seconds = d.getSeconds();
+            document.querySelector('.current_time').textContent = hours + " : " + minutes + " : " + seconds;
+            document.querySelector('.alarm_time').textContent = a_hour + " : " + a_minute + " : " + a_second;
+            if ((a_hour == hours) && (a_minute == minutes) && (a_second == seconds)) {
+                document.querySelector('.alarm').textContent = "Time is over";
+                alarm.play();
+            }
+            setTimeout(current_date, 1000);
+        }
+        current_date();
+        function stop(){
+            alarm.pause();
+        }
+        function snooze(){
+            alarm.pause();
+            a_second+=10;
+            if(a_second>59)
+            {
+                ++a_minute;
+                a_second%=60;
+            }
+            if(a_minute>59)
+            {
+                ++a_hour;
+                a_minute%=60;
+            }
+            current_date();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick = "play()">Click to play</button>
+    <button onclick = "stop()">Click to stop</button>
+    <script>
+        var audio = new Audio('alarm.wav');
+        function play(){
+            audio.play();
+        }
+        function stop(){
+            audio.pause();
+        }
+    </script>
+</body>
+</html>
